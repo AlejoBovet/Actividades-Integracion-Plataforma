@@ -7,7 +7,7 @@ $cliente = new ("http://localhost/Actividades-Integracion-Plataforma-main/index.
 var_dump($cliente);
 
 
-$guardarOrdenDeCompraS = $cliente->guardarOrdenDeCompra([
+$guardarOrdenDeCompraS = $cliente->ordenDeCompra([
     'NumeroOrden' => 23234,
     'Ordenante' => 'DEDE',
     'Moneda' => 'EURO',
