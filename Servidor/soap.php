@@ -18,7 +18,7 @@ $servicio->register("resta", array('num1' => 'xsd:integer', 'num2' => 'xsd:integ
 
 function resta($num1, $num2){
     $resultadoSuma = $num1 - $num2;
-    $resultado = "el resultado de la resta es: ".$resultadoSuma;
+    $resultado = "el resultado de la resta es ".$resultadoSuma;
     return $resultado;
 }
 
