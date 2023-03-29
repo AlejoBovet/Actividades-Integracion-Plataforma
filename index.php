@@ -1,56 +1,55 @@
-<?php 
+<?php
+require_once "src/nusoap.php";
 
-$namespace = "soapIntegracionP";
+$namespace = "miSoap";
 $server = new soap_server();
-$server->configureWDLS("Soap2020",$namespace);
-$server->wsd1->shemaTargetNamespace = $namespace;
+$server->configureWSDL("SOAP",$namespace);
+$server->wsdl->schemaTargetNamespace = $namespace;
 
-$server->wsd1->addcomplexType(
-    'ordendecompra',
+$server->wsdl->addComplexType(
+    'ordenDeCompra',
     'complexType',
     'struct',
     'all',
     '',
     array(
-        'numeroOrden' => array('name' => 'numeroOrden', 'type' => 'xsd:string'),
-        'ordenante' => array('name' => 'ordenante', 'type' => 'xsd:string'),
-        'moneda' => array('name' => 'moneda', 'type' => 'xsd:string'),
-        'tipodecambio' => array('name' => 'tipodecambio', 'type' => 'xsd:decimal')
+        'NumeroOrden' => array('name' => 'NumeroOrden', 'type'=>'xsd:string'),
+        'Ordenante' => array('name' => 'Ordenante', 'type'=>'xsd:string'),
+        'Moneda' => array('name' => 'Moneda', 'type'=>'xsd:string'),
+        'TipoCambio' => array('name' => 'TipoCambio', 'type'=>'xsd:decimal')
     )
 );
 
-
-$server->wsd1->addcomplexType(
+$server->wsdl->addComplexType(
     'response',
     'complexType',
     'struct',
     'all',
     '',
     array(
-        'Numerodeautorizacion' => array('name'=>'Numerodeautorizacion','type'=>'xsd:string'),
-        'Resultado' => array('name'=>'Resultado','type'=>'xsd:boolean'),
+        'NumeroDeAutorizacion' => array('name'=>'NumeroDeAutorizacion', 'type'=>'xsd:string'),
+        'Resultado' => array('name' => 'Resultado', 'type' => 'xsd:boolean')
     )
 );
 
 $server->register(
-    'guardarordendeCompra',
-    array('name' => 'tns:ordendecompra'),
+    'guardarOrdenDeCompra',
+    array('name' => 'tns:ordenDeCompra'),
     array('name' => 'tns:response'),
     $namespace,
     false,
     'rpc',
-    'encode',
-    'recibe una orden de compra de un numero aurtorizado'
-
+    'encoded',
+    'Recibe una orden de compra y regresa un número de autorización'
 );
 
-function guardarordendeCompra($request){
+function guardarOrdenDeCompra($request){
     return array(
-        "Numerodeautorizacion" => "la orden de compra".$request["numeroOrden"]."ha sido autorizda con el numero".rand(10000.100000),
-        "Resultado" => true 
+        "NumeroDeAutorizacion" => "La orden de compra ".$request["NumeroOrden"]." ha sido autorizada con el número ". rand(10000, 100000),
+        "Resultado" => true
     );
 }
 
-$POST_DATA = file_get_contents("php://input");
-$server->service($POST_DATA);
+$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA)? $HTTP_RAW_POST_DATA : '';
+$server->service(file_get_contents("php://input"));
 exit();
