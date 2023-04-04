@@ -10,7 +10,7 @@ $servicio->register("Suma", array('num1' => 'xsd:integer', 'num2' => 'xsd:intege
 
 function Suma($num1, $num2){
     $resultadoSuma = $num1 + $num2;
-    $resultado = "el resultado de la suma es: ".$resultadoSuma;
+    $resultado = $resultadoSuma;
     return $resultado;
 }
 
@@ -18,23 +18,23 @@ $servicio->register("resta", array('num1' => 'xsd:integer', 'num2' => 'xsd:integ
 
 function resta($num1, $num2){
     $resultadoSuma = $num1 - $num2;
-    $resultado = "el resultado de la resta es ".$resultadoSuma;
+    $resultado = $resultadoSuma;
     return $resultado;
 }
 
 $servicio->register("multiplicacion", array('num1' => 'xsd:integer', 'num2' => 'xsd:integer'), array('return' => 'xsd:string'), $namespace);
 
-function multilicacion($num1, $num2){
+function multiplicacion($num1, $num2){
     $resultadoSuma = $num1 * $num2;
-    $resultado = "el resultado de la mulriplicacion es ".$resultadoSuma;
+    $resultado = $resultadoSuma;
     return $resultado;
 }
 
 $servicio->register("divicion", array('num1' => 'xsd:integer', 'num2' => 'xsd:integer'), array('return' => 'xsd:string'), $namespace);
 
 function divicion($num1, $num2){
-    $resultadoSuma = $num1 / $num2;
-    $resultado = "el resultado de la divicion es ".$resultadoSuma;
+    $resultadoSuma =  $num1 / $num2;
+    $resultado = $resultadoSuma;
     return $resultado;
 }
 
