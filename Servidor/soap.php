@@ -22,6 +22,22 @@ function resta($num1, $num2){
     return $resultado;
 }
 
+$servicio->register("multiplicacion", array('num1' => 'xsd:integer', 'num2' => 'xsd:integer'), array('return' => 'xsd:string'), $namespace);
+
+function multilicacion($num1, $num2){
+    $resultadoSuma = $num1 * $num2;
+    $resultado = "el resultado de la mulriplicacion es ".$resultadoSuma;
+    return $resultado;
+}
+
+$servicio->register("divicion", array('num1' => 'xsd:integer', 'num2' => 'xsd:integer'), array('return' => 'xsd:string'), $namespace);
+
+function divicion($num1, $num2){
+    $resultadoSuma = $num1 / $num2;
+    $resultado = "el resultado de la divicion es ".$resultadoSuma;
+    return $resultado;
+}
+
 
 
 

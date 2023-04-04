@@ -2,7 +2,7 @@ from zeep import Client
 from os import system
 
 #crear cliente 
-cliente = Client('http://localhost/masterphp/Actividades-Integracion-Plataforma/soap.php?wsdl');
+cliente = Client('http://localhost/Actividades-Integracion-Plataforma/Servidor/soap.php?wsdl');
 
 system("cls")
 opcion=5
